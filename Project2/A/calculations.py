@@ -26,5 +26,5 @@ def make_pairs(locations):
                 pairs[i, j] = distance_between_points(locations[i], locations[j]) + \
                               distance_between_points([0,0],locations[i]) + distance_between_points([0,0],locations[j])
         if len(locations) % 2 == 1:  # if odd number of boxes, add entry for trip from origin to box (only one chosen)
-            pairs[i, -1] = 2 * distance_between_points([0, 0], locations[i])
+            pairs[i, -1] =  distance_between_points([0, 0], locations[i]) * 2
     return pairs

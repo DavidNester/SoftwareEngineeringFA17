@@ -3,7 +3,7 @@ Author: David Nester
 Date: 10.10.17
 Module to simulate a robot picking up packages. Solution is not necessarily optimal.
 """
-from calculations import make_pairs
+from calculations import make_pairs, distance_between_points
 import math
 
 
@@ -121,6 +121,9 @@ def main():
     distance, order = distance_take_smallest(package_locations)
     print('Take Smallest:',round(distance,2),'yards')
 
+    for package in package_locations:
+        distance += distance_between_points([0,0],package)
+
     true_ord = 1  # numbers order that packages are returned because order contains spacers
     for i in range(len(order)):
         if isinstance(order[i],str):  # if entry is '----' then just print it
@@ -148,4 +151,6 @@ if __name__ == "__main__":
                          [3, 8], [2, 7], [7.5, 6], [4, 5], [2.5, 4], [6, 4],
                          [8, 4], [2, 2], [3, 2], [9, 2], [1, 1], [2, 1], [6, 1],
                          [10, 1], [1, 6]]
+    package_locations = [[1.5, 11], [6, 11], [7, 11], [4, 10], [6.5, 9], [8, 9],
+                         [3, 8], [2, 7], [7.5, 6], [4, 5],[2.5,4]]
     main()
